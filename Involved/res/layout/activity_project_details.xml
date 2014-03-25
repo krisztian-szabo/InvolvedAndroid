@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/project_image"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignBottom="@id/project_image"
+        android:background="@drawable/bck_gradient" />
+
+    <com.involved.views.InvolvedTextView
+        android:id="@+id/project_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/project_image"
+        android:layout_margin="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="0.5"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <com.involved.views.InvolvedTextView
+        android:id="@+id/project_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/project_image"
+        android:layout_margin="5dp" />
+
+    <com.involved.views.InvolvedTextView
+        android:id="@+id/project_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/project_details"
+        android:layout_margin="5dp" />
+
+</RelativeLayout>

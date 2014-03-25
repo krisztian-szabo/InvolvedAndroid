@@ -2,21 +2,28 @@ package com.involved.fragment;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.involved.R;
+import com.involved.activities.ProjectDetailsActivity;
+import com.involved.adapters.ProjectAdapter;
 import com.involved.interfaces.WebServiceInterface;
 import com.involved.model.Project;
 import com.involved.network.WebServiceManager;
 
-public class ProjectsFragment extends Fragment implements WebServiceInterface {
+public class ProjectsFragment extends Fragment implements WebServiceInterface,
+		OnItemClickListener {
 	private ListView mListView;
+	private ProjectAdapter mAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,20 +38,24 @@ public class ProjectsFragment extends Fragment implements WebServiceInterface {
 
 	@Override
 	public void onSuccess(Object response) {
-		List<Project> projects = (List<Project>) response;
-		String[] projectNames = new String[projects.size()];
-		for (Project project : projects) {
-			projectNames[projects.indexOf(project)] = project.getName();
-		}
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, projectNames);
-		mListView.setAdapter(adapter);
+		mAdapter = new ProjectAdapter(getActivity(), (List<Project>) response);
+		mListView.setAdapter(mAdapter);
+		mListView.setOnItemClickListener(this);
 	}
 
 	@Override
 	public void onFailure(Object response) {
-		// TODO Auto-generated method stub
+		Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_SHORT)
+				.show();
+	}
 
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		Project project = (Project) mAdapter.getItem(position);
+		Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
+		intent.putExtra("project", project.toString());
+		startActivity(intent);
 	}
 
 }

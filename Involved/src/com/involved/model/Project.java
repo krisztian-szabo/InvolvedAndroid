@@ -2,6 +2,8 @@ package com.involved.model;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 public class Project {
 	private int id;
 	private String name;
@@ -121,4 +123,14 @@ public class Project {
 		this.updated_at = updated_at;
 	}
 
+	public static Project fromString(String string) {
+		Gson gson = new Gson();
+		return gson.fromJson(string, Project.class);
+	}
+
+	@Override
+	public String toString() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
+	}
 }

@@ -1,4 +1,4 @@
-package com.involved;
+package com.involved.activities;
 
 import java.util.Locale;
 
@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.involved.R;
 import com.involved.fragment.NewsFragment;
 import com.involved.fragment.ProfileFragment;
 import com.involved.fragment.ProjectsFragment;
