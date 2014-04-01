@@ -2,6 +2,8 @@ package com.involved.model;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 public class User {
 	private int id;
 	private String email;
@@ -67,4 +69,14 @@ public class User {
 		this.birthdate = birthdate;
 	}
 
+	public static User fromString(String string) {
+		Gson gson = new Gson();
+		return gson.fromJson(string, User.class);
+	}
+
+	@Override
+	public String toString() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
+	}
 }

@@ -6,6 +6,9 @@ import static com.involved.utils.InvolvedConstants.REPEAT_NONE;
 import static com.involved.utils.InvolvedConstants.REPEAT_WEEKLY;
 import static com.involved.utils.InvolvedConstants.REPEAT_YEARLY;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -55,5 +58,20 @@ public class InvolvedUtils {
 			e.printStackTrace();
 		}
 		return "-";
+	}
+
+	public static String convertInputStreamToString(InputStream inputStream) {
+		BufferedReader r = new BufferedReader(
+				new InputStreamReader(inputStream));
+		StringBuilder total = new StringBuilder();
+		String line;
+		try {
+			while ((line = r.readLine()) != null) {
+				total.append(line);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return total.toString();
 	}
 }

@@ -9,6 +9,7 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:name="com.involved.InvolvedApplication"
@@ -29,6 +30,14 @@
             android:name="com.involved.activities.ProjectDetailsActivity"
             android:label="@string/title_project_details" >
         </activity>
+        <activity
+            android:name="com.involved.activities.ChooseAccountActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
